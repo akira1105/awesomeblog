@@ -1,0 +1,43 @@
+<% if logged_in? %>
+	<div class="row">
+	<div class="col-md-4">
+		<section class="user_info">
+			<%= render 'shared/user_info' %>
+			<span>
+				<%= link_to "view my profile", current_user %>
+			</span>
+			<span>
+				<%= pluralize(current_user.microposts.count, "micropost") %> 
+			</span>
+
+			<span>
+				<%= render 'shared/stats' %>
+			</span>
+			
+		</section>
+		<section class="micropost_form">
+			<%= render 'shared/micropost_form' %>
+		</section>
+		
+	</div>
+	<div class="col-md-8">
+		<h3>Microposts</h3>
+		
+	<% if @microposts.any? %>
+		<ul class="microposts">
+			<%= render @microposts %>
+		</ul>
+		
+		<%= will_paginate @microposts %>
+	<% end %>
+	</div>
+</div>
+<% else %>
+
+<div class="jumbotron">
+	<h1>Awesome Blog App</h1>
+	<p>This is the home page for the Awesome Blog.</p>
+
+	<div><small>This is a project under Kredo Japan and Framgia</small></div>
+</div>
+<% end %>
